@@ -1,0 +1,2 @@
+thanhdao:thanhdao
+user2:password2
