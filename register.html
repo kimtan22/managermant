@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Register</title>
+    <link rel="stylesheet" href="register.css" />
+  </head>
+  <body>
+    <div class="register-container">
+      <h2>Tạo tài khoản mới</h2>
+      <form action="process_register.php" method="post">
+        <div class="form-group">
+          <label for="new_username">Username:</label>
+          <input type="text" id="new_username" name="new_username" required />
+        </div>
+        <div class="form-group">
+          <label for="new_password">Password:</label>
+          <input
+            type="password"
+            id="new_password"
+            name="new_password"
+            required
+          />
+        </div>
+        <div class="form-group">
+          <label for="fullname">Họ và Tên:</label>
+          <input type="text" id="fullname" name="fullname" required />
+        </div>
+        <div class="form-group">
+          <label for="dob">Ngày tháng năm sinh:</label>
+          <input type="date" id="dob" name="dob" required />
+        </div>
+        <div class="form-group">
+          <label for="faculty">Khoa đang học:</label>
+          <input type="text" id="faculty" name="faculty" required />
+        </div>
+        <div class="form-group">
+          <label for="student_id">Mã số sinh viên:</label>
+          <input type="text" id="student_id" name="student_id" required />
+        </div>
+        <div class="form-group">
+          <label for="email">Email:</label>
+          <input
+            type="email"
+            id="email"
+            name="email"
+            list="emailDomains"
+            placeholder="example@gmail.com"
+            required
+          />
+          <datalist id="emailDomains">
+            <option value="@gmail.com"></option>
+            <option value="@yahoo.com"></option>
+            <option value="@outlook.com"></option>
+            <option value="@icloud.com"></option>
+          </datalist>
+        </div>
+        <script>
+          document
+            .getElementById("email")
+            .addEventListener("input", function (e) {
+              const input = e.target.value;
+              const atIndex = input.indexOf("@");
+              if (atIndex === -1) {
+                document.getElementById("emailDomains").innerHTML = `
+                  <option value="${input}@gmail.com"></option>
+                  <option value="${input}@yahoo.com"></option>
+                  <option value="${input}@outlook.com"></option>
+                  <option value="${input}@icloud.com"></option>
+                `;
+              }
+            });
+        </script>
+
+        <div class="form-group">
+          <label for="gender">Giới tính:</label>
+          <select id="gender" name="gender" required>
+            <option value="Nam">Nam</option>
+            <option value="Nữ">Nữ</option>
+            <option value="Khác">Khác</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="program">Hệ học:</label>
+          <input type="text" id="program" name="program" required />
+        </div>
+        <div class="form-group">
+          <label for="phone">Số điện thoại:</label>
+          <input
+            type="tel"
+            id="phone"
+            name="phone"
+            pattern="010-[0-9]{4}-[0-9]{4}"
+            placeholder="010-xxxx-xxxx"
+            required
+          />
+        </div>
+        <script>
+          document
+            .getElementById("phone")
+            .addEventListener("input", function (e) {
+              let input = e.target.value.replace(/\D/g, ""); // Loại bỏ ký tự không phải số
+              if (input.length > 3 && input.length <= 7) {
+                input = input.slice(0, 3) + "-" + input.slice(3);
+              } else if (input.length > 7) {
+                input =
+                  input.slice(0, 3) +
+                  "-" +
+                  input.slice(3, 7) +
+                  "-" +
+                  input.slice(7, 11);
+              }
+              e.target.value = input;
+            });
+        </script>
+
+        <button type="submit">Tạo tài khoản</button>
+      </form>
+    </div>
+  </body>
+</html>
