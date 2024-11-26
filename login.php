@@ -36,7 +36,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $_SESSION['username'] = $username;
         
         // Đăng nhập thành công, chuyển hướng đến trang quản lý quỹ
-        header("Location: dashboard.php");
+        header("Location: index.html");
         exit();
     } else {
         echo "Sai tên đăng nhập hoặc mật khẩu!";
